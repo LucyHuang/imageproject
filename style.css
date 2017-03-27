@@ -1,0 +1,352 @@
+/*
+This is a good layout for a mobile-first CSS template.
+Following this flow will minimize the number of styles you need to write and will ensure you are thinking, designing and developing mobile-first.
+Most of your styles get written like standard CSS, but for your mobile presentation. Generally speaking, a good mobile presention will stretch out nicely for larger screens.
+Sometimes, when we stretch out to larger screens, we need to make minor tweaks for the larger devices -- you can make these tweaks in the tablet media query, or if the issue exists on desktop only, the desktop media query.
+You will find this is far easier than the opposite task of using CSS to cram your desktop experience into a mobile device.
+*/
+
+
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* Start your base/mobile styles here */
+
+html, body {
+    font-size: 16px;
+    padding: 1em;
+    /* Sets default font-size to 16px, ensuring 1em = 16px; */
+}
+
+h1 {
+    padding-bottom: 20px;
+    font-size: 30px;
+}
+
+p {
+    max-width: 750px;
+    font-size: 18px;
+    font: #000000;
+    line-height: 1.2em;
+    padding-bottom: 10px;
+}
+
+.caption {
+    color: #606060;
+    font-size: 1em;
+    padding-top: 5px;
+    padding-bottom: 1em;
+}
+
+.credit {
+    font-weight: 400;
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
+    border: solid #00cc7a;
+    opacity: .75;
+    z-index: 3;
+    display: block;
+}
+
+#emoji {
+    width: 24px
+}
+
+#circle_lights {
+    position: absolute;
+    top: 20%;
+    /* Must be in percentage or will move on different devices*/
+    right: 5%;
+    /* Must be in percentage or will move on different devices*/
+    -webkit-transition: opacity 5s ease-in;
+    -moz-transition: opacity 5s ease-in;
+    -o-transition: opacity 5s ease-in;
+    transition: opacity 5s ease-in;
+}
+
+#circle_charlie {
+    position: absolute;
+    top: 45%;
+    /* Must be in percentage or will move on different devices*/
+    left: 47%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+#circle_tv {
+    position: absolute;
+    top: 25%;
+    /* Must be in percentage or will move on different devices*/
+    left: 10%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+#circle_speaker {
+    position: absolute;
+    top: 45%;
+    /* Must be in percentage or will move on different devices*/
+    left: 17%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+#circle_nightmode {
+    position: absolute;
+    top: 72%;
+    /* Must be in percentage or will move on different devices*/
+    left: 23%;
+    /* Must be in percentage or will move on different devices*/
+    -webkit-transition: opacity 5s ease-in;
+    -moz-transition: opacity 5s ease-in;
+    -o-transition: opacity 5s ease-in;
+    transition: opacity 5s ease-in;
+}
+
+#circle_sleepbot {
+    position: absolute;
+    top: 31.5%;
+    /* Must be in percentage or will move on different devices*/
+    left: 59%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+#circle_noisli {
+    position: absolute;
+    top: 31.5%;
+    /* Must be in percentage or will move on different devices*/
+    left: 71.75%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+#circle_sleepcycle {
+    position: absolute;
+    top: 31.5%;
+    /* Must be in percentage or will move on different devices*/
+    left: 84.25%;
+    /* Must be in percentage or will move on different devices*/
+}
+
+.photo-container {
+    width: 100%;
+    position: relative;
+    /*z-index: 1;*/
+}
+
+.info_slides {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: 0;
+    /* While dial the z-index down because even if an element doesn't have opacity it still has 'mass'. The info window would get in the way of clicking on the circles without this */
+    transition: opacity .5s ease-in-out;
+    /* this gives us the fade in and fade out effect but only on the opacity element. You cannot use the display property with transitions. */
+}
+
+.info_slides.active {
+    z-index: 4;
+    /* We give the info_slides a higher z-index on active */
+    opacity: .9;
+}
+
+.info_popIn {
+    position: absolute;
+    padding: 30px 15px 30px 15px;
+    top: 0px;
+    left: 0px;
+    padding: 40px 15px 30px 15px;
+    text-align: center;
+}
+
+.btn_close {
+    position: absolute;
+    font-family: sans-serif;
+    top: 5%;
+    left: 90%;
+    font-size: 18px;
+    color: #000000;
+    z-index: 4;
+    font-weight: 900;
+}
+
+img {
+    width: 100%;
+}
+
+
+/* Tablet/Desktop overrides */
+
+@media(min-width: 681px) {
+    /* Any adjustments for tablets and larger go here. Note these styles will be applied to anything 681px or larger -- so tablet AND desktop */
+    body {
+        max-width: 680px;
+        display: block;
+        margin: 0 auto;
+    }
+    p {
+        margin: 0em 1.5em 1.5em 1.5em;
+    }
+    h1 {
+        margin: 27px;
+    }
+    #iphone {
+        width: 500px;
+        display: block;
+        margin: 0 auto;
+    }
+    #room {
+        width: 500px;
+        display: block;
+        margin: 0 auto;
+    }
+    .photo-container {
+        width: 500px;
+        display: block;
+        position: relative;
+        margin: 0 auto;
+    }
+    .info_slides {
+        width: 500px;
+        background-color: #FFFFFF;
+        font-size: 18px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        z-index: 0;
+    }
+    .info_popIn {
+        padding: 70px 15px 30px 15px;
+    }
+    .caption {
+        display: block;
+        margin-left: 15px;
+    }
+    .btn_close {
+        font-size: 30px;
+    }
+}
+
+@media(min-width: 729px) {
+    /* Any adjustments for desktop and larger go here. Note these styles will be applied to anything 729px or larger -- so desktop */
+    body {
+        width: 980px;
+        margin: 0 auto;
+    }
+    #room {
+        width: 650px;
+        display: block;
+        margin: 0 auto;
+    }
+    #iphone {
+        width: 650px;
+        display: block;
+        margin: 0 auto;
+    }
+    .photo-container {
+        width: 650px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        /*z-index: 1;*/
+    }
+    .info_slides {
+        width: 650px;
+    }
+    .caption {
+        margin-left: 15px;
+    }
+    .circle:hover {
+        background-color: purple;
+    }
+    #popIn {
+        font-size: 5em;
+        padding: 200px 15px 30px 15px;
+    }
+    .btn_close:hover {
+        color: blue;
+    }
+}
+
+
+/* Must be in percentage or will move on different devices*/
+
+right: 5%;
+
+/* Must be in percentage or will move on different devices*/
+
+-webkit-transition: opacity 5s ease-in;
+-moz-transition: opacity 5s ease-in;
+-o-transition: opacity 5s ease-in;
+transition: opacity 5s ease-in;
+
+}
+.info_slides {
+    width: 600px;
+}
+.info_popIn {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 1.5em;
+    text-align: center;
+    color: #a52a2a;
+    height: 100%;
+}
+.circle:hover {
+    background-color: #800080;
+}
+#popIn {
+    font-size: 5em;
+    padding: 200px 15px 30px 15px;
+}
+.btn_close:hover {
+    color: #0000ff;
+}
+
+}
